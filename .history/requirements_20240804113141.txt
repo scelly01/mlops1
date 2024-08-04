@@ -1,0 +1,4 @@
+pandas
+numpy
+seaborn
+-e .   # indicates that there is setup.py and a package is to be created
