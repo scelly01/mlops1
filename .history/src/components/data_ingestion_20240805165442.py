@@ -1,4 +1,4 @@
-from src.logger import logging
+from logger import logging
 from src.exception import CustomException
 
 import os
