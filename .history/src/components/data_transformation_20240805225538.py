@@ -4,19 +4,14 @@ from dataclasses import dataclass
 import os
 import pandas as pd
 import numpy as np
-from sklearn.pipeline import Pipeline
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.compose import ColumnTransformer
 
 from src.logger import logging
 from src.exception import CustomException
-from src.utils import save_object
 
 
 @dataclass
 class DataTransformationConfig:
-    preprocessor_obj_file_path = os.path.join('artifacts', 'preprocessor.pkl')
+    preprocessor_obj_file = os.path.join('artifacts', 'preprocessor.pkl')
 
 
 class DataTransformation:
@@ -29,13 +24,13 @@ class DataTransformation:
            categorical_columns = [ "gender", "race_ethnicity", "parental_level_of_education", "lunch", "test_preparation_course"]
 
 
-           num_pipeline = Pipeline(steps=[("imputer", SimpleImputer(strategy='median')), ("scaler", StandardScaler())])
-           cat_pipeline = Pipeline(steps=[("imputer", SimpleImputer(strategy='most_frequent')), ("one_hot_encoder", OneHotEncoder()), ("scaler", StandardScaler(with_mean=False))])
+           num_pipeline = 
+           cat_pipeline = 
 
-           logging.info(f"Numerical Columns: {numerical_columns}")
-           logging.info(f"Categorical Columns: {categorical_columns}")
+           logging.info()
+           logging.info()
 
-           preprocessor = ColumnTransformer([("num_pipeline", num_pipeline, numerical_columns), ("cat_columns", cat_pipeline, categorical_columns)])
+           preprocessor = ColumnTransformer()
 
            return preprocessor
         
@@ -71,9 +66,9 @@ class DataTransformation:
 
             logging.info("Saved preprocessing object")
 
-            save_object (file_path = self.data_transformation_config.preprocessor_obj_file_path, obj = preprocessing_obj)
+            # save_object (file_path = obj = )
 
-            return ( train_arr, test_arr, self.data_transformation_config.preprocessor_obj_file_path)
+            return ( train_arr, test_arr, self.data_transformation_config.preprocessor_obj_file )
 
         except Exception as e:
             raise CustomException(e, sys)
