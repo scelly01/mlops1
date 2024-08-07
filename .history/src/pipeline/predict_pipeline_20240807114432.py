@@ -1,12 +1,11 @@
 import sys
 import pandas as pd
-import os
 
 from src.exception import CustomException
 from src.utils import load_object
 
 class PredictPipeline:
-    def __init__(self):
+    def __init__():
         pass
     def predict(self, features):
         try:
